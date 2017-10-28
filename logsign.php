@@ -43,7 +43,7 @@ else if (isset($_POST["submitSignup"])) {
 	}
 
 	else {
-		header("location: login.php?message=This+email+is+already+registered.+Do+you+want+to+<a href = 'login.php'>login</a>?");
+		header("location: signup.php?message=This+email+is+already+registered.+Do+you+want+to+<a href = 'login.php'>login</a>?");
 	}
 
 }
