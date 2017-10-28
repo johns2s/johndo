@@ -58,6 +58,21 @@ if (isset($_SESSION["user"])) {
     }
   }
 
+  else if (isset($_POST["submitUpdateSettingsPW"])) {
+    $passwordText = $_POST["passwordChangeInput"];
+    $userID = $_SESSION["userID"];
+    $passwordNew = password_hash($passwordText, PASSWORD_BCRYPT);
+    $sql = "UPDATE users SET password = '$passwordNew' WHERE id = '$userID';";
+
+    if (mysqli_query($conn, $sql)) {
+      header("location: settings.php");
+    }
+    else {
+      header("location: settings.php?message=Something+went+wrong.+You+may+not+have+the+permissions+to+do+this.");
+    }
+  }
+
+
   else {
     header("location: index.php");
   }

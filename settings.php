@@ -8,8 +8,6 @@
 
 ?>
 
-<h2 class = "headline">Today is <?php echo date("l, F dS (m/d/Y)") ?></h2>
-
   <div class = "logsignWrap">
     <form class = "item" action = "process.php" method = "POST">
       <h3>Settings</h3>
@@ -21,9 +19,8 @@
       }
 
       ?>
-      <input type = "text" class = "inputText" name = "passwordChangeInput" maxlength = "75" placeholder = "New Password">
-      <input type = "hidden" name = "taskID" value = "<?php echo htmlentities($taskID); ?>">
-      <input type = "submit" class = "inputBtn" name = "submitUpdate" value = "Update" required>
+      <input type = "password" class = "inputText" name = "passwordChangeInput" value = "" placeholder = "New Password">
+      <input type = "submit" class = "inputBtn" name = "submitUpdateSettingsPW" value = "Change Password" required>
     </form>
   </div>
 
