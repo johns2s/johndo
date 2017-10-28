@@ -25,7 +25,9 @@
 
    <?php
     if (isset($_SESSION["user"])) {
-      echo "<a href = 'logsign.php?logout=true' class = 'navLink'>Logout</a>";
+      echo "<div id = 'navBig'><a href = 'settings.php' class = 'navLink'>Settings</a><a href = 'logsign.php?logout=true' class = 'navLink'>Logout</a></div>";
+      echo "<div id = 'navSmall'><a title = 'settings' alt = 'settings' href = 'settings.php' class = 'navLink'><img class = 'headIcon' src = 'settings.png'></a><a title = 'logout' alt = 'logout' href = 'logsign.php?logout=true' class = 'navLink'><img class = 'headIcon' src = 'logout.png'></a></div>";
+
     }
     else {
       echo "<a href = 'login.php' class = 'navLink'>Login</a><a href = 'signup.php' class = 'navLink'>Signup</a>";

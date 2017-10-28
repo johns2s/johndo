@@ -97,6 +97,18 @@ nav {
   margin-right: -12.5px;
 }
 
+#navBig {
+  display: none;
+  line-height: 70px;
+}
+
+.headIcon {
+  width: 20px;
+  height: 20px;
+  margin: 25px 0;
+  vertical-align: top;
+}
+
 .navLink {
   line-height: 70px;
   height: 70px;
@@ -239,5 +251,11 @@ footer {
 @media (min-width: 600px) {
   #home {
     padding: 100px 50px;
+  }
+  #navBig {
+    display: block;
+  }
+  #navSmall {
+    display: none;
   }
 }

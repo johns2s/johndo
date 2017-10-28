@@ -1,10 +1,11 @@
 <?php
 
 include("config.php");
+ini_set('display_errors', 1);
 
 if (isset($_POST["submitLogin"])) {
   $email = mysqli_real_escape_string($conn, $_POST["emailInput"]);
-  $passwordText = mysqli_real_escape_string($conn, $_POST["passwordInput"]);
+  $passwordText = $_POST["passwordInput"];
   $loginSQL = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
 	$result = mysqli_query($conn, $loginSQL);
 
@@ -17,18 +18,20 @@ if (isset($_POST["submitLogin"])) {
   		$_SESSION["userID"] = $row["id"];
   		header("location: index.php");
     }
-	}
+	  else {
+		  header("location: login.php?message=Incorrect+email+or+password.+Do+you+want+to+<a href = 'signup.php'>sign up</a>?");
+	  }
+  }
+  else {
+    header("location: login.php?message=Incorrect+email+or+password.+Do+you+want+to+<a href = 'signup.php'>sign up</a>?");
+  }
 
-	else {
-		header("location: login.php?message=Incorrect+email+or+password.+Do+you+want+to+<a href = 'signup.php'>sign up</a>?");
-
-	}
 
 }
 
 else if (isset($_POST["submitSignup"])) {
   $email = mysqli_real_escape_string($conn, $_POST["emailInput"]);
-	$passwordText = mysqli_real_escape_string($conn, $_POST["passwordInput"]);
+	$passwordText = $_POST["passwordInput"];
   $password = password_hash($passwordText, PASSWORD_BCRYPT);
   $signupSQLCheck = "SELECT * FROM users WHERE email = '$email'";
 	$result = mysqli_query($conn, $signupSQLCheck);
@@ -40,7 +43,7 @@ else if (isset($_POST["submitSignup"])) {
 	}
 
 	else {
-		header("location: login.php?message=This+email+is+already+registered.+Do+you+want+to+<a href = 'login.php'>login</a>?");
+		header("location: signup.php?message=This+email+is+already+registered.+Do+you+want+to+<a href = 'login.php'>login</a>?");
 	}
 
 }

@@ -23,7 +23,7 @@
       ?>
 
       <input type = "email" class = "inputText" name = "emailInput" placeholder = "Email Address" required>
-      <input type = "password" class = "inputText" name = "pwordInput" placeholder = "Password" required>
+      <input type = "password" class = "inputText" name = "passwordInput" placeholder = "Password" required>
       <input type = "submit" class = "inputBtn" name = "submitLogin" value = "Login" required>
     </form>
   </div>
