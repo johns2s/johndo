@@ -6,3 +6,9 @@ The main johnDo instance is currently only available locally on my dev computer.
 
     CREATE DATABASE johndo; USE johndo; CREATE TABLE users (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, email TEXT, password TEXT) character set utf8;
     CREATE TABLE reminders (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, title TEXT, more TEXT, date TEXT, user TEXT) character set utf8;
+
+## license
+
+Copyright © 2017-2017 johnDo devs
+
+This software is available under the terms of the Mozilla Public License 2.0. See LICENSE for details.
