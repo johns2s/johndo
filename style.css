@@ -239,6 +239,48 @@ nav {
   display: block;
 }
 
+.formLabel {
+  font-size: .8em;
+  font-weight: 700;
+  padding-bottom: 5px;
+  text-align: left;
+  display: block;
+}
+
+.radioWrap {
+  overflow: hidden;
+  border-radius: 2px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 15px;
+}
+
+.radioLabel {
+  display: inline-block;
+  margin-right: 0px;
+  background-color: #f8f8f8;
+  border: 1px solid #cfcfcf;
+  padding: 8px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.radioLabel:hover {
+  cursor: pointer;
+}
+
+#fuzzy:checked ~ #fuzzyLabel {
+  background-color: #cfcfcf;
+}
+
+#semiFuzzy:checked ~ #semifLabel {
+  background-color: #cfcfcf;
+}
+
+#notFuzzy:checked ~ #nfLabel {
+  background-color: #cfcfcf;
+}
+
 main {
   padding: 25px;
 }

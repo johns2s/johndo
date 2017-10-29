@@ -53,6 +53,21 @@ else if (isset($_GET["logout"]) && isset($_SESSION["user"])) {
 	header("location: login.php?message=You+have+been+logged+out.");
 }
 
+else if (isset($_GET["killAccount"]) && isset($_SESSION["user"])) {
+  $userID = $_SESSION["userID"];
+  $killSQL = "DELETE FROM users WHERE id = '$userID' LIMIT 1";
+  if (mysqli_query($conn, $killSQL)) {
+    session_destroy();
+  	$_SESSION = array();
+    header("location: signup.php?message=Your+account+has+been+deleted.");
+  }
+  else {
+    header("location: settings.php?message=Your+account+couldn't+be+deleted.");
+  }
+
+
+}
+
 else if (isset($_SESSION["user"])) {
 	header("location: index.php");
 }
