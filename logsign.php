@@ -1,7 +1,6 @@
 <?php
 
 include("config.php");
-ini_set('display_errors', 1);
 
 if (isset($_POST["submitLogin"])) {
   $email = mysqli_real_escape_string($conn, $_POST["emailInput"]);
