@@ -10,7 +10,7 @@ if (isset($_SESSION["user"])) {
 
   <script>
 
-  function doMoment(dite) {
+  function doMomentFuzzy(dite) {
     document.write(
       moment(dite, 'MM/DD/YYYY').calendar(null, {
         nextDay: '[Tomorrow]',
@@ -95,18 +95,18 @@ if (isset($_SESSION["user"])) {
 
                 if (strtotime("tomorrow") >= $row["date"] && strtotime("today") <= $row["date"] && $row["date"] !== "unknown") {
                   echo "<img class = 'icon' src = 'redclock.png' title = 'This task is due soon'></img>
-                  <p style = 'color: #f62626'><b><script>doMoment('" . $dite . "');</script></b></p>
+                  <p style = 'color: #f62626'><b><script>doMomentFuzzy('" . $dite . "');</script></b></p>
                   <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
                 }
                 else if (strtotime("today") >= $row["date"] && $row["date"] !== "unknown") {
                   echo "<img class = 'icon' src = 'warning.png' title = 'This task is late'></img>
-                  <p style = 'color: #f62626'><b><script>doMoment('" . $dite . "');</script></b></p>
+                  <p style = 'color: #f62626'><b><script>doMomentFuzzy('" . $dite . "');</script></b></p>
                   <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
 
                 }
                 else {
                   echo "<img class = 'icon' src = 'clock.png'></img>
-                  <p><b><script>doMoment('" . $dite . "');</script></b></p>
+                  <p><b><script>doMomentFuzzy('" . $dite . "');</script></b></p>
                   <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
                 }
               }
