@@ -81,6 +81,7 @@ if (isset($_SESSION["user"])) {
         while($row = mysqli_fetch_assoc($result)) {
           if ($row["date"] == "unknown") {
             $date = $row["date"];
+            $dite = $row["date"];
           }
           else {
             $date = date("D, M dS", $row["date"]);
