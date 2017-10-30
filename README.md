@@ -6,6 +6,7 @@ The main johnDo instance is currently only available locally on my dev computer.
 
     CREATE DATABASE johndo; USE johndo; CREATE TABLE users (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, email TEXT, password TEXT) character set utf8;
     CREATE TABLE tasks (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, title TEXT, more TEXT, date TEXT, user TEXT) character set utf8;
+    CREATE TABLE settings (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, fuzzyDates TEXT, user TEXT) character set utf8;
 
 ## license
 

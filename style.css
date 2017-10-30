@@ -129,7 +129,7 @@ nav {
   padding: 25px;
 }
 
-.wrapper hr {
+.wrapper hr, .bigHR {
   background-color: #f5f6f7;
   height: 3px;
   margin: 15px -25px;
