@@ -8,6 +8,38 @@ if (isset($_SESSION["user"])) {
 
   <h2 class = "headline">Today is <?php echo date("l, F dS") ?></h2>
 
+  <script>
+
+  function doMoment(dite) {
+    document.write(
+      moment(dite, 'MM/DD/YYYY').calendar(null, {
+        nextDay: '[Tomorrow]',
+        lastDay: '[Yesterday]',
+        sameDay: '[Today]',
+        nextWeek: '[next week]',
+        lastWeek: '[1 week ago]',
+        sameElse: 'ddd, MMM Do',
+      })
+    );
+  }
+
+
+  function doMomentSemiFuzzy(dite) {
+    document.write(
+      moment(dite, 'MM/DD/YYYY').calendar(null, {
+        nextDay: '[Tomorrow]',
+        lastDay: '[Yesterday]',
+        sameDay: '[Today]',
+        nextWeek: 'ddd, MMM Do',
+        lastWeek: 'ddd, MMM Do',
+        sameElse: 'ddd, MMM Do',
+      })
+    );
+  }
+
+</script>
+
+
   <?php
 
   if (isset($_GET["message"])) {
@@ -52,7 +84,7 @@ if (isset($_SESSION["user"])) {
           }
           else {
             $date = date("D, M dS", $row["date"]);
-            $dite = date("d/m/Y", $row["date"]);
+            $dite = date("m/d/Y", $row["date"]);
           }
 
           echo "<div class = 'item'><h3>" . $row["title"] . "</h3>";
@@ -63,21 +95,42 @@ if (isset($_SESSION["user"])) {
 
                 if (strtotime("tomorrow") >= $row["date"] && strtotime("today") <= $row["date"] && $row["date"] !== "unknown") {
                   echo "<img class = 'icon' src = 'redclock.png' title = 'This task is due soon'></img>
-                  <p style = 'color: #f62626'><b><script> moment().format();document.write(moment('" . $dite . "', 'DD/MM/YYYY').fromNow());</script></b></p>
+                  <p style = 'color: #f62626'><b><script>doMoment('" . $dite . "');</script></b></p>
                   <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
                 }
                 else if (strtotime("today") >= $row["date"] && $row["date"] !== "unknown") {
                   echo "<img class = 'icon' src = 'warning.png' title = 'This task is late'></img>
-                  <p style = 'color: #f62626'><b><script> moment().format();document.write(moment('" . $dite . "', 'DD/MM/YYYY').fromNow());</script></b></p>
+                  <p style = 'color: #f62626'><b><script>doMoment('" . $dite . "');</script></b></p>
                   <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
 
                 }
                 else {
                   echo "<img class = 'icon' src = 'clock.png'></img>
-                  <p><b><script> moment().format();document.write(moment('" . $dite . "', 'DD/MM/YYYY').fromNow());</script></b></p>
+                  <p><b><script>doMoment('" . $dite . "');</script></b></p>
                   <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
                 }
               }
+
+              else if ($fuzziness == "semiFuzzy") {
+
+                  if (strtotime("tomorrow") >= $row["date"] && strtotime("today") <= $row["date"] && $row["date"] !== "unknown") {
+                    echo "<img class = 'icon' src = 'redclock.png' title = 'This task is due soon'></img>
+                    <p style = 'color: #f62626'><b><script>doMomentSemiFuzzy('" . $dite . "');</script></b></p>
+                    <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
+                  }
+                  else if (strtotime("today") >= $row["date"] && $row["date"] !== "unknown") {
+                    echo "<img class = 'icon' src = 'warning.png' title = 'This task is late'></img>
+                    <p style = 'color: #f62626'><b><script>doMomentSemiFuzzy('" . $dite . "');</script></b></p>
+                    <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
+
+                  }
+                  else {
+                    echo "<img class = 'icon' src = 'clock.png'></img>
+                    <p><b><script>doMomentSemiFuzzy('" . $dite . "');</script></b></p>
+                    <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
+                  }
+                }
+
 
               else {
 

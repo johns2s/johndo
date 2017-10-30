@@ -42,12 +42,14 @@
         <div class = "radioWrap">
           <input id="fuzzy" style="display: none" name="fuzziness" value="fuzzy" <?php if($fuzziness == "fuzzy") { echo "checked"; } ?> type="radio">
           <input id="notFuzzy" style="display: none" name="fuzziness" value="notFuzzy" <?php if($fuzziness == "notFuzzy") { echo "checked"; } ?> type="radio">
+          <input id="semiFuzzy" style="display: none" name="fuzziness" value="semiFuzzy" <?php if($fuzziness == "semiFuzzy") { echo "checked"; } ?> type="radio">
           <label for="fuzzy" id = "fuzzyLabel" class="radioLabel">Fuzzy</label>
+          <label for="semiFuzzy" id = "semifLabel" class="radioLabel">Semi-Fuzzy</label>
           <label for="notFuzzy" id = "nfLabel" class="radioLabel">Not Fuzzy</label>
         </div>
-        <input type = "submit" class = "inputBtn" name = "submitUpdateSettings" value = "Update Settings" style = "margin-bottom: 15px;" required>
+        <input type = "submit" class = "inputBtn" name = "submitUpdateSettings" value = "Update Settings" style = "margin-bottom: 10px;" required>
       </form>
-
+      <hr class = "bigHR">
       <form action = "process.php" method = "POST">
         <label class = "formLabel">Account Details</label>
         <input type="text" style="display:none">
