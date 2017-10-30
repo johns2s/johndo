@@ -16,8 +16,8 @@ if (isset($_SESSION["user"])) {
         nextDay: '[Tomorrow]',
         lastDay: '[Yesterday]',
         sameDay: '[Today]',
-        nextWeek: '[next week]',
-        lastWeek: '[1 week ago]',
+        nextWeek: '[a few days]',
+        lastWeek: '[a few days ago]',
         sameElse: 'ddd, MMM Do',
       })
     );
