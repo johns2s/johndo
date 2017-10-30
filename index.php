@@ -30,7 +30,7 @@ if (isset($_SESSION["user"])) {
         nextDay: '[Tomorrow]',
         lastDay: '[Yesterday]',
         sameDay: '[Today]',
-        nextWeek: 'ddd, MMM Do',
+        nextWeek: '[This] dddd',
         lastWeek: 'ddd, MMM Do',
         sameElse: 'ddd, MMM Do',
       })
