@@ -30,6 +30,18 @@ if (isset($_SESSION["user"])) {
 
       $userID = $_SESSION["userID"];
 
+      $sqlSet = "SELECT * FROM settings WHERE user = '$userID' LIMIT 1";
+      $resultSet = mysqli_query($conn, $sqlSet);
+      if (mysqli_num_rows($resultSet) == 1) {
+        while($rowSet = mysqli_fetch_assoc($resultSet)) {
+          $fuzziness = $rowSet["fuzzyDates"];
+        }
+      }
+      else {
+        $fuzziness = "notFuzzy";
+      }
+
+
       $sql = "SELECT * FROM tasks WHERE user = '$userID' ORDER BY date asc, id desc";
       $result = mysqli_query($conn, $sql);
 
@@ -40,27 +52,51 @@ if (isset($_SESSION["user"])) {
           }
           else {
             $date = date("D, M dS", $row["date"]);
+            $dite = date("d/m/Y", $row["date"]);
           }
 
           echo "<div class = 'item'><h3>" . $row["title"] . "</h3>";
 
           $more = nl2br($row["more"]);
 
+            if ($fuzziness == "fuzzy") {
+
                 if (strtotime("tomorrow") >= $row["date"] && strtotime("today") <= $row["date"] && $row["date"] !== "unknown") {
                   echo "<img class = 'icon' src = 'redclock.png' title = 'This task is due soon'></img>
-                  <p style = 'color: #f62626'><b>" . $date . "</b></p>
+                  <p style = 'color: #f62626'><b><script> moment().format();document.write(moment('" . $dite . "', 'DD/MM/YYYY').fromNow());</script></b></p>
                   <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
                 }
                 else if (strtotime("today") >= $row["date"] && $row["date"] !== "unknown") {
                   echo "<img class = 'icon' src = 'warning.png' title = 'This task is late'></img>
-                  <p style = 'color: #f62626'><b>" . $date . "</b></p>
+                  <p style = 'color: #f62626'><b><script> moment().format();document.write(moment('" . $dite . "', 'DD/MM/YYYY').fromNow());</script></b></p>
                   <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
 
                 }
                 else {
                   echo "<img class = 'icon' src = 'clock.png'></img>
-                  <p><b>" . $date . "</b></p>
+                  <p><b><script> moment().format();document.write(moment('" . $dite . "', 'DD/MM/YYYY').fromNow());</script></b></p>
                   <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
+                }
+              }
+
+              else {
+
+                  if (strtotime("tomorrow") >= $row["date"] && strtotime("today") <= $row["date"] && $row["date"] !== "unknown") {
+                    echo "<img class = 'icon' src = 'redclock.png' title = 'This task is due soon'></img>
+                    <p style = 'color: #f62626'><b>" . $date . "</b></p>
+                    <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
+                  }
+                  else if (strtotime("today") >= $row["date"] && $row["date"] !== "unknown") {
+                    echo "<img class = 'icon' src = 'warning.png' title = 'This task is late'></img>
+                    <p style = 'color: #f62626'><b>" . $date . "</b></p>
+                    <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
+
+                  }
+                  else {
+                    echo "<img class = 'icon' src = 'clock.png'></img>
+                    <p><b>" . $date . "</b></p>
+                    <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
+                  }
                 }
 
               echo "<div class = 'optionsWrap'>

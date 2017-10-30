@@ -72,6 +72,32 @@ if (isset($_SESSION["user"])) {
     }
   }
 
+  else if (isset($_POST["submitUpdateSettings"])) {
+    $fuzziness = $_POST["fuzziness"];
+    $userID = $_SESSION["userID"];
+    $chUpdateSQL = "SELECT * FROM settings WHERE user = '$userID' LIMIT 1";
+  	$result = mysqli_query($conn, $chUpdateSQL);
+
+  	if (mysqli_num_rows($result) == 1) {
+      $updateSQL = "UPDATE settings set fuzzyDates = '$fuzziness' WHERE user = '$userID'";
+      if (mysqli_query($conn, $updateSQL)) {
+        header("location: settings.php");
+      }
+      else {
+        header("location: settings.php?message=Something+went+wrong.+You+may+not+have+the+permissions+to+do+this.");
+      }
+    }
+    else {
+      $insertSQL = "INSERT INTO settings set fuzzyDates = '$fuzziness', user = '$userID'";
+      if (mysqli_query($conn, $insertSQL)) {
+        header("location: settings.php");
+      }
+      else {
+        header("location: settings.php?message=Something+went+wrong.+You+may+not+have+the+permissions+to+do+this.");
+      }
+    }
+  }
+
 
   else {
     header("location: index.php");
