@@ -18,6 +18,7 @@
 
   <div class = "logsignWrap">
     <form class = "item" action = "process.php" method = "POST">
+      <input type = "hidden" name = "token" value = "<?php echo $_SESSION["userToken"]; ?>">
       <h3>Add New Task</h3>
 
       <?php

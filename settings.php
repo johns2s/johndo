@@ -25,7 +25,7 @@
       function alertKill() {
         var answer = confirm("Are you sure you wish to permanently delete your account and all of your tasks?")
         if (answer)
-          window.location = "logsign.php?killAccount=True"
+          window.location = "logsign.php?killAccount=True&token=<?php echo $_SESSION ?>"
       }
   </script>
     <div class = "item" action = "process.php" method = "POST">
@@ -38,6 +38,7 @@
 
       ?>
       <form action = "process.php" method = "POST">
+        <input type = "hidden" name = "token" value = "<?php echo $_SESSION["userToken"]; ?>">
         <label class = "formLabel">Task Display</label>
         <div class = "radioWrap">
           <input id="fuzzy" style="display: none" name="fuzziness" value="fuzzy" <?php if($fuzziness == "fuzzy") { echo "checked"; } ?> type="radio">
@@ -51,6 +52,7 @@
       </form>
       <hr class = "bigHR">
       <form action = "process.php" method = "POST">
+        <input type = "hidden" name = "token" value = "<?php echo $_SESSION["userToken"]; ?>">
         <label class = "formLabel">Account Details</label>
         <input type="text" style="display:none">
         <input type="password" style="display:none">

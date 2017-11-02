@@ -2,7 +2,7 @@
 
 include("config.php");
 
-if (isset($_SESSION["user"])) {
+if (isset($_SESSION["user"]) && isset($_POST["token"]) && $_POST["token"] == $_SESSION["userToken"])) {
   if (isset($_POST["submitNew"])) {
     $title = mysqli_real_escape_string($conn, $_POST["titleInput"]);
     $more = mysqli_real_escape_string($conn, $_POST["moreInput"]);
@@ -24,7 +24,7 @@ if (isset($_SESSION["user"])) {
   	}
   }
 
-  else if (isset($_POST["submitUpdate"])) {
+  else if (isset($_POST["submitUpdate"]) && isset($_POST["token"]) && $_POST["token"] == $_SESSION["userToken"])) {
     $title = mysqli_real_escape_string($conn, $_POST["titleInput"]);
     $taskID = mysqli_real_escape_string($conn, $_POST["taskID"]);
     $more = mysqli_real_escape_string($conn, $_POST["moreInput"]);
@@ -46,7 +46,7 @@ if (isset($_SESSION["user"])) {
     }
   }
 
-  else if (isset($_GET["delete"]) && isset($_GET["id"])) {
+  else if (isset($_GET["delete"]) && isset($_GET["id"]) && isset($_GET["token"]) && $_GET["token"] == $_SESSION["userToken"]) {
     $id = $_GET["id"];
     $userID = $_SESSION["userID"];
     $sql = "DELETE FROM tasks WHERE id = '$id' AND user = '$userID'";
@@ -58,7 +58,7 @@ if (isset($_SESSION["user"])) {
     }
   }
 
-  else if (isset($_POST["submitUpdateSettingsPW"])) {
+  else if (isset($_POST["submitUpdateSettingsPW"]) && isset($_POST["token"]) && $_POST["token"] == $_SESSION["userToken"]) {
     $passwordText = $_POST["passwordChangeInput"];
     $userID = $_SESSION["userID"];
     $passwordNew = password_hash($passwordText, PASSWORD_BCRYPT);
@@ -72,7 +72,7 @@ if (isset($_SESSION["user"])) {
     }
   }
 
-  else if (isset($_POST["submitUpdateSettings"])) {
+  else if (isset($_POST["submitUpdateSettings"]) && isset($_POST["token"]) && $_POST["token"] == $_SESSION["userToken"]) {
     $fuzziness = $_POST["fuzziness"];
     $userID = $_SESSION["userID"];
     $chUpdateSQL = "SELECT * FROM settings WHERE user = '$userID' LIMIT 1";
