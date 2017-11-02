@@ -1,9 +1,7 @@
 <?php
-
 include("config.php");
-
-if (isset($_SESSION["user"]) && isset($_POST["token"]) && $_POST["token"] == $_SESSION["userToken"])) {
-  if (isset($_POST["submitNew"])) {
+if (isset($_SESSION["user"])) {
+  if (isset($_POST["submitNew"]) && isset($_POST["token"]) && $_POST["token"] == $_SESSION["userToken"]) {
     $title = mysqli_real_escape_string($conn, $_POST["titleInput"]);
     $more = mysqli_real_escape_string($conn, $_POST["moreInput"]);
     if ($more == "") {
@@ -24,7 +22,7 @@ if (isset($_SESSION["user"]) && isset($_POST["token"]) && $_POST["token"] == $_S
   	}
   }
 
-  else if (isset($_POST["submitUpdate"]) && isset($_POST["token"]) && $_POST["token"] == $_SESSION["userToken"])) {
+  else if (isset($_POST["submitUpdate"]) && isset($_POST["token"]) && $_POST["token"] == $_SESSION["userToken"]) {
     $title = mysqli_real_escape_string($conn, $_POST["titleInput"]);
     $taskID = mysqli_real_escape_string($conn, $_POST["taskID"]);
     $more = mysqli_real_escape_string($conn, $_POST["moreInput"]);

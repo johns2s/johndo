@@ -1,5 +1,5 @@
 <?php
-include("config.php")
+include("config.php");
 /* to debug uncomment: ini_set('display_errors', 1); */
 ?>
 
