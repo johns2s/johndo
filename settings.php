@@ -54,8 +54,8 @@
       <form action = "process.php" method = "POST">
         <input type = "hidden" name = "token" value = "<?php echo $_SESSION["userToken"]; ?>">
         <label class = "formLabel">Account Details</label>
-        <input type="text" style="display:none">
-        <input type="password" style="display:none">
+        <input type = "email" style = "display:none" value = "<?php echo htmlentities(); ?>">
+        <input type = "password" style = "display:none">
         <input type = "password" class = "inputText" name = "passwordChangeInput" value = "" placeholder = "New Password" required>
         <input type = "submit" class = "inputBtn" name = "submitUpdateSettingsPW" value = "Change Password" style = "margin-bottom: 15px" required>
       </form>
