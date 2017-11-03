@@ -39,7 +39,7 @@
       <?php
 
       if (isset($_GET["message"])) {
-        echo "<p class = 'message'><b>" . $_GET['message'] . "</b></p>";
+        echo "<p class = 'message'><b>" . htmlentities($_GET['message']) . "</b></p>";
       }
 
       ?>
