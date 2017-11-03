@@ -71,7 +71,7 @@ if (isset($_SESSION["user"])) {
   }
 
   else if (isset($_POST["submitUpdateSettings"]) && isset($_POST["token"]) && $_POST["token"] == $_SESSION["userToken"]) {
-    $fuzziness = $_POST["fuzziness"];
+    $fuzziness = mysqli_real_escape_string($conn, $_POST["fuzziness"]);
     $userID = $_SESSION["userID"];
     $chUpdateSQL = "SELECT * FROM settings WHERE user = '$userID' LIMIT 1";
   	$result = mysqli_query($conn, $chUpdateSQL);
