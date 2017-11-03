@@ -45,7 +45,7 @@ if (isset($_SESSION["user"])) {
   }
 
   else if (isset($_GET["delete"]) && isset($_GET["id"]) && isset($_GET["token"]) && $_GET["token"] == $_SESSION["userToken"]) {
-    $id = $_GET["id"];
+    $id = mysqli_real_escape_string($conn, $_GET["id"]);
     $userID = $_SESSION["userID"];
     $sql = "DELETE FROM tasks WHERE id = '$id' AND user = '$userID'";
   	if (mysqli_query($conn, $sql)) {
