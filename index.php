@@ -88,9 +88,9 @@ if (isset($_SESSION["user"])) {
             $dite = date("m/d/Y", $row["date"]);
           }
 
-          echo "<div class = 'item'><h3>" . $row["title"] . "</h3>";
+          echo "<div class = 'item'><h3>" . htmlentities($row["title"]) . "</h3>";
 
-          $more = nl2br($row["more"]);
+          $more = nl2br(htmlentities($row["more"]));
 
             if ($fuzziness == "fuzzy") {
 
