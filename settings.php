@@ -25,7 +25,7 @@
       function alertKill() {
         var answer = confirm("Are you sure you wish to permanently delete your account and all of your tasks?")
         if (answer)
-          window.location = "logsign.php?killAccount=True&token=<?php echo $_SESSION ?>"
+          window.location = "logsign.php?killAccount=True&token=<?php echo $_SESSION['userToken'] ?>"
       }
   </script>
     <div class = "item" action = "process.php" method = "POST">
