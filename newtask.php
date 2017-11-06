@@ -18,12 +18,13 @@
 
   <div class = "logsignWrap">
     <form class = "item" action = "process.php" method = "POST">
+      <input type = "hidden" name = "token" value = "<?php echo $_SESSION["userToken"]; ?>">
       <h3>Add New Task</h3>
 
       <?php
 
       if (isset($_GET["message"])) {
-        echo "<p class = 'message'><b>" . $_GET['message'] . "</b></p>";
+        echo "<p class = 'message'><b>" . htmlentities($_GET['message']) . "</b></p>";
       }
 
       ?>

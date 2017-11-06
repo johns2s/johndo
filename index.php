@@ -43,7 +43,7 @@ if (isset($_SESSION["user"])) {
   <?php
 
   if (isset($_GET["message"])) {
-    echo "<p class = 'message'><b>" . $_GET['message'] . "</b></p>";
+    echo "<p class = 'message'><b>" . htmlentities($_GET['message']) . "</b></p>";
   }
 
   ?>
@@ -88,9 +88,9 @@ if (isset($_SESSION["user"])) {
             $dite = date("m/d/Y", $row["date"]);
           }
 
-          echo "<div class = 'item'><h3>" . $row["title"] . "</h3>";
+          echo "<div class = 'item'><h3>" . htmlentities($row["title"]) . "</h3>";
 
-          $more = nl2br($row["more"]);
+          $more = nl2br(htmlentities($row["more"]));
 
             if ($fuzziness == "fuzzy") {
 
@@ -154,7 +154,7 @@ if (isset($_SESSION["user"])) {
                 }
 
               echo "<div class = 'optionsWrap'>
-              <a href = 'process.php?delete&id=" . $row["id"] . "' style = 'color: #1BAF5B; display: block;'>Finished</a>
+              <a href = 'process.php?delete&id=" . $row["id"] . "&token=" . $_SESSION["userToken"] . "' style = 'color: #1BAF5B; display: block;'>Finished</a>
               <a href = 'edittask.php?id=" . $row["id"] . "' style = 'color: #5294e2; display: block;'>Edit</a>
               </div>
               </div>";

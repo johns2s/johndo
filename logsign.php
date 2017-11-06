@@ -15,6 +15,7 @@ if (isset($_POST["submitLogin"])) {
     if (password_verify($passwordText, $hash)) {
       $_SESSION["user"] = 1;
   		$_SESSION["userID"] = $row["id"];
+      $_SESSION["userToken"] = hash("sha256", random_bytes(12) . time());
   		header("location: index.php");
     }
 	  else {
@@ -47,13 +48,13 @@ else if (isset($_POST["submitSignup"])) {
 
 }
 
-else if (isset($_GET["logout"]) && isset($_SESSION["user"])) {
+else if (isset($_GET["logout"]) && isset($_SESSION["user"]) && isset($_GET["token"]) && $_GET["token"] == $_SESSION["userToken"]) {
 	session_destroy();
 	$_SESSION = array();
 	header("location: login.php?message=You+have+been+logged+out.");
 }
 
-else if (isset($_GET["killAccount"]) && isset($_SESSION["user"])) {
+else if (isset($_GET["killAccount"]) && isset($_SESSION["user"]) && isset($_GET["token"]) && $_GET["token"] == $_SESSION["userToken"]) {
   $userID = $_SESSION["userID"];
   $killSQL = "DELETE FROM users WHERE id = '$userID' LIMIT 1";
   if (mysqli_query($conn, $killSQL)) {
