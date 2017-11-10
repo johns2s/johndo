@@ -1,5 +1,5 @@
 <?php
-include("config.php")
+include("config.php");
 /* to debug uncomment: ini_set('display_errors', 1); */
 ?>
 
@@ -29,8 +29,8 @@ include("config.php")
 
    <?php
     if (isset($_SESSION["user"])) {
-      echo "<div id = 'navBig'><a href = 'settings.php' class = 'navLink'>Settings</a><a href = 'logsign.php?logout=true' class = 'navLink'>Logout</a></div>";
-      echo "<div id = 'navSmall'><a title = 'settings' alt = 'settings' href = 'settings.php' class = 'navLink'><img class = 'headIcon' src = 'settings.png'></a><a title = 'logout' alt = 'logout' href = 'logsign.php?logout=true' class = 'navLink'><img class = 'headIcon' src = 'logout.png'></a></div>";
+      echo "<div id = 'navBig'><a href = 'settings.php' class = 'navLink'>Settings</a><a href = 'logsign.php?logout=true&token=" . $_SESSION['userToken'] . "' class = 'navLink'>Logout</a></div>";
+      echo "<div id = 'navSmall'><a title = 'settings' alt = 'settings' href = 'settings.php' class = 'navLink'><img class = 'headIcon' src = 'settings.png'></a><a title = 'logout' alt = 'logout' href = 'logsign.php?logout=true&token=" . $_SESSION['userToken'] . "' class = 'navLink'><img class = 'headIcon' src = 'logout.png'></a></div>";
 
     }
     else {

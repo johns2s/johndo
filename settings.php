@@ -25,7 +25,7 @@
       function alertKill() {
         var answer = confirm("Are you sure you wish to permanently delete your account and all of your tasks?")
         if (answer)
-          window.location = "logsign.php?killAccount=True"
+          window.location = "logsign.php?killAccount=True&token=<?php echo $_SESSION['userToken'] ?>"
       }
   </script>
     <div class = "item" action = "process.php" method = "POST">
@@ -33,11 +33,12 @@
 
       <?php
       if (isset($_GET["message"])) {
-        echo "<p class = 'message'><b>" . $_GET['message'] . "</b></p>";
+        echo "<p class = 'message'><b>" . htmlentities($_GET['message']) . "</b></p>";
       }
 
       ?>
       <form action = "process.php" method = "POST">
+        <input type = "hidden" name = "token" value = "<?php echo $_SESSION["userToken"]; ?>">
         <label class = "formLabel">Task Display</label>
         <div class = "radioWrap">
           <input id="fuzzy" style="display: none" name="fuzziness" value="fuzzy" <?php if($fuzziness == "fuzzy") { echo "checked"; } ?> type="radio">
@@ -51,9 +52,10 @@
       </form>
       <hr class = "bigHR">
       <form action = "process.php" method = "POST">
+        <input type = "hidden" name = "token" value = "<?php echo $_SESSION["userToken"]; ?>">
         <label class = "formLabel">Account Details</label>
-        <input type="text" style="display:none">
-        <input type="password" style="display:none">
+        <input type = "email" style = "display:none" value = "<?php echo htmlentities(); ?>">
+        <input type = "password" style = "display:none">
         <input type = "password" class = "inputText" name = "passwordChangeInput" value = "" placeholder = "New Password" required>
         <input type = "submit" class = "inputBtn" name = "submitUpdateSettingsPW" value = "Change Password" style = "margin-bottom: 15px" required>
       </form>
