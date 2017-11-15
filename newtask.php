@@ -28,13 +28,14 @@
       }
 
       ?>
+      <label class = "formLabel">Task Name</label>
       <input type = "text" class = "inputText" name = "titleInput" maxlength = "75" placeholder = "Task Title" value = "<?php echo htmlentities($taskTitle); ?>" required>
+      <label class = "formLabel">Deadline</label>
       <input type = "date" class = "inputText" name = "dateInput" minlength = "5" maxlength = "10" placeholder = "Deadline (MM/DD/YYYY)" required>
+      <label class = "formLabel">More Info</label>
       <textarea class = "inputTextBig" name = "moreInput"  placeholder = "More Info"></textarea>
       <input type = "submit" class = "inputBtn" name = "submitNew" value = "Add" required>
-      <p style = "margin-top: 15px;">*You can also type in a day name (ex. Monday) only. If you use dashes, johnDo assumes that you are using the DD-MM-YYYY format (MM/DD/YYYY with slashes).</p>
     </form>
-    drop - month drop - day text (4) year combi @ process
   </div>
 
 <?php
