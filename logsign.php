@@ -56,10 +56,12 @@ else if (isset($_GET["logout"]) && isset($_SESSION["user"]) && isset($_GET["toke
 
 else if (isset($_GET["killAccount"]) && isset($_SESSION["user"]) && isset($_GET["token"]) && $_GET["token"] == $_SESSION["userToken"]) {
   $userID = $_SESSION["userID"];
-  $killSQL = "DELETE * FROM users WHERE id = '$userID' LIMIT 1; DELETE * FROM settings WHERE user = '$userID'; DELETE * FROM tasks WHERE user = '$userID';";
-  if (mysqli_query($conn, $killSQL)) {
+  $killSQL = "DELETE FROM settings WHERE user = '$userID';";
+  $killSQL1 = "DELETE FROM tasks WHERE user = '$userID';";
+  $killSQL2 = "DELETE FROM users WHERE id = '$userID' LIMIT 1;";
+  if (mysqli_query($conn, $killSQL) && mysqli_query($conn, $killSQL1) && mysqli_query($conn, $killSQL2)) {
     session_destroy();
-  	$_SESSION = array();
+    $_SESSION = array();
     header("location: signup.php?message=Your+account+has+been+deleted.");
   }
   else {
