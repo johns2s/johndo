@@ -56,7 +56,7 @@ else if (isset($_GET["logout"]) && isset($_SESSION["user"]) && isset($_GET["toke
 
 else if (isset($_GET["killAccount"]) && isset($_SESSION["user"]) && isset($_GET["token"]) && $_GET["token"] == $_SESSION["userToken"]) {
   $userID = $_SESSION["userID"];
-  $killSQL = "DELETE FROM users WHERE id = '$userID' LIMIT 1";
+  $killSQL = "DELETE * FROM users WHERE id = '$userID' LIMIT 1; DELETE * FROM settings WHERE user = '$userID'; DELETE * FROM tasks WHERE user = '$userID';";
   if (mysqli_query($conn, $killSQL)) {
     session_destroy();
   	$_SESSION = array();
