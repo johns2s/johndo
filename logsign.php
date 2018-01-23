@@ -19,11 +19,11 @@ if (isset($_POST["submitLogin"])) {
   		header("location: index.php");
     }
 	  else {
-		  header("location: login.php?message=Incorrect+email+or+password.+Do+you+want+to+<a href = 'signup.php'>sign up</a>?");
+		  header("location: login.php?message=Incorrect+email+or+password.");
 	  }
   }
   else {
-    header("location: login.php?message=Incorrect+email+or+password.+Do+you+want+to+<a href = 'signup.php'>sign up</a>?");
+    header("location: login.php?message=Incorrect+email+or+password.");
   }
 
 
@@ -43,7 +43,7 @@ else if (isset($_POST["submitSignup"])) {
 	}
 
 	else {
-		header("location: signup.php?message=This+email+is+already+registered.+Do+you+want+to+<a href = 'login.php'>login</a>?");
+		header("location: signup.php?message=This+email+is+already+registered.");
 	}
 
 }
