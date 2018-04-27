@@ -16,9 +16,11 @@ if (isset($_SESSION["user"])) {
 		$sql = "INSERT INTO tasks set title = '$title', more = '$more', date = '$deadline', user = '$user'";
 		if (mysqli_query($conn, $sql)) {
 		    header("location: index.php");
+        exit;
 		}
     else {
   			header("location: newtask.php?message=A+database+error+occured+while+adding+your+task.");
+        exit;
   	}
   }
 
@@ -38,9 +40,11 @@ if (isset($_SESSION["user"])) {
     $sql = "UPDATE tasks set title = '$title', more = '$more', date = '$deadline' WHERE id = '$taskID' AND user = '$user'";
     if (mysqli_query($conn, $sql)) {
         header("location: index.php");
+        exit;
     }
     else {
         header("location: newtask.php?message=A+database+error+occured+while+updating+your+task.You+may+not+be+allowed+to+edit+this+task.");
+        exit;
     }
   }
 
@@ -50,9 +54,11 @@ if (isset($_SESSION["user"])) {
     $sql = "DELETE FROM tasks WHERE id = '$id' AND user = '$userID'";
   	if (mysqli_query($conn, $sql)) {
   		header("location: index.php");
+      exit;
     }
   	else {
       header("location: index.php?message=Error+deleting+task.");
+      exit;
     }
   }
 
@@ -64,9 +70,11 @@ if (isset($_SESSION["user"])) {
 
     if (mysqli_query($conn, $sql)) {
       header("location: settings.php");
+      exit;
     }
     else {
       header("location: settings.php?message=Something+went+wrong.+You+may+not+have+the+permissions+to+do+this.");
+      exit;
     }
   }
 
@@ -80,18 +88,22 @@ if (isset($_SESSION["user"])) {
       $updateSQL = "UPDATE settings set fuzzyDates = '$fuzziness' WHERE user = '$userID'";
       if (mysqli_query($conn, $updateSQL)) {
         header("location: settings.php");
+        exit;
       }
       else {
         header("location: settings.php?message=Something+went+wrong.+You+may+not+have+the+permissions+to+do+this.");
+        exit;
       }
     }
     else {
       $insertSQL = "INSERT INTO settings set fuzzyDates = '$fuzziness', user = '$userID'";
       if (mysqli_query($conn, $insertSQL)) {
         header("location: settings.php");
+        exit;
       }
       else {
         header("location: settings.php?message=Something+went+wrong.+You+may+not+have+the+permissions+to+do+this.");
+        exit;
       }
     }
   }
@@ -99,12 +111,14 @@ if (isset($_SESSION["user"])) {
 
   else {
     header("location: index.php");
+    exit;
   }
 
 }
 
 else {
   header("location: index.php");
+  exit;
 }
 
 mysqli_close($conn);
