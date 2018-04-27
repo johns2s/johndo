@@ -32,6 +32,10 @@ if (isset($_POST["submitLogin"])) {
 else if (isset($_POST["submitSignup"])) {
   $email = mysqli_real_escape_string($conn, $_POST["emailInput"]);
 	$passwordText = $_POST["passwordInput"];
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("location: login.php?message=Invalid+Email+Address.");
+    exit;
+  }
   $password = password_hash($passwordText, PASSWORD_BCRYPT);
   $signupSQLCheck = "SELECT * FROM users WHERE email = '$email'";
 	$result = mysqli_query($conn, $signupSQLCheck);
@@ -40,10 +44,12 @@ else if (isset($_POST["submitSignup"])) {
 		$signupSQL = "INSERT INTO users set email = '$email', password = '$password'";
 		mysqli_query($conn, $signupSQL);
 		header("location: login.php?message=Your+account+is+active.+You+may+now+login.");
+    exit;
 	}
 
 	else {
 		header("location: signup.php?message=This+email+is+already+registered.");
+    exit;
 	}
 
 }
@@ -52,6 +58,7 @@ else if (isset($_GET["logout"]) && isset($_SESSION["user"]) && isset($_GET["toke
 	session_destroy();
 	$_SESSION = array();
 	header("location: login.php?message=You+have+been+logged+out.");
+  exit;
 }
 
 else if (isset($_GET["killAccount"]) && isset($_SESSION["user"]) && isset($_GET["token"]) && $_GET["token"] == $_SESSION["userToken"]) {
@@ -63,9 +70,11 @@ else if (isset($_GET["killAccount"]) && isset($_SESSION["user"]) && isset($_GET[
     session_destroy();
     $_SESSION = array();
     header("location: signup.php?message=Your+account+has+been+deleted.");
+    exit;
   }
   else {
     header("location: settings.php?message=Your+account+couldn't+be+deleted.");
+    exit;
   }
 
 
@@ -73,10 +82,12 @@ else if (isset($_GET["killAccount"]) && isset($_SESSION["user"]) && isset($_GET[
 
 else if (isset($_SESSION["user"])) {
 	header("location: index.php");
+  exit;
 }
 
 else {
 	header("location: index.php");
+  exit;
 }
 
 mysqli_close($conn);
