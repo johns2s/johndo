@@ -250,9 +250,10 @@ nav {
 
 .radioWrap {
   overflow: hidden;
+  display: block;
   border-radius: 2px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
   margin-bottom: 15px;
 }
 
@@ -279,6 +280,14 @@ nav {
 }
 
 #notFuzzy:checked ~ #nfLabel {
+  background-color: #cfcfcf;
+}
+
+#once:checked ~ #onceLabel {
+  background-color: #cfcfcf;
+}
+
+#repeat:checked ~ #repeatLabel {
   background-color: #cfcfcf;
 }
 
