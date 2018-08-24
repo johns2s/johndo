@@ -283,12 +283,26 @@ nav {
   background-color: #cfcfcf;
 }
 
-#once:checked ~ #onceLabel {
+/* start task new/edit page buttons */
+
+#once:checked ~ .radioWrap #onceLabel {
   background-color: #cfcfcf;
 }
 
-#repeat:checked ~ #repeatLabel {
+#repeat:checked ~ .radioWrap #repeatLabel {
   background-color: #cfcfcf;
+}
+
+#onceD, #repeatD {
+  display: none;
+}
+
+#once:checked ~ #onceD {
+  display: block;
+}
+
+#repeat:checked ~ #repeatD {
+  display: block;
 }
 
 main {
