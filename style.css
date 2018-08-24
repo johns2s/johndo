@@ -283,6 +283,14 @@ nav {
   background-color: #cfcfcf;
 }
 
+.sub {
+  background-color: #f8f8f8;
+  border: 1px solid #cfcfcf;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  padding: 15px 15px 8px;
+}
+
 /* start task new/edit page buttons */
 
 #once:checked ~ .radioWrap #onceLabel {

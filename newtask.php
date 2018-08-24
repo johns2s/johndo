@@ -40,17 +40,17 @@
         <label for="repeat" id = "repeatLabel" class="radioLabel">Repeat</label>
       </div>
 
-      <div id = "onceD">
+      <div id = "onceD" class = "sub">
         <label class = "formLabel">Deadline</label>
-        <input type = "date" class = "inputText" name = "dateInput" minlength = "5" maxlength = "10" placeholder = "Deadline (MM/DD/YYYY)" required>
+        <input value = "<?php echo date("Y-m-d", strtotime("+1 day")) ?>" type = "date" class = "inputText" name = "dateInput" minlength = "5" maxlength = "10" placeholder = "Deadline (MM/DD/YYYY)" required>
       </div>
-      <div id = "repeatD">
+      <div id = "repeatD" class = "sub">
         <label class = "formLabel">Frequency (days)</label>
-        <input type = "number" class = "inputText" name = "freqInput" min = "1" max = "20" placeholder = "Repeat every x days" required>
+        <input value = "7" type = "number" class = "inputText" name = "freqInput" min = "1" max = "20" placeholder = "Repeat every x days" required>
         <label class = "formLabel">Start date</label>
-        <input type = "date" class = "inputText" name = "startInput" placeholder = "Start date (MM/DD/YYYY)" required>
+        <input value = "<?php echo date("Y-m-d", strtotime("+1 day")) ?>" type = "date" class = "inputText" name = "startInput" placeholder = "Start date (MM/DD/YYYY)" required>
         <label class = "formLabel">End date</label>
-        <input type = "date" class = "inputText" name = "endInput" placeholder = "End date (MM/DD/YYYY)" required>
+        <input value = "<?php echo date("Y-m-d", strtotime("+8 days")) ?>" type = "date" class = "inputText" name = "endInput" placeholder = "End date (MM/DD/YYYY)" required>
       </div>
 
       <label class = "formLabel">More Info</label>
