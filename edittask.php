@@ -40,6 +40,14 @@
 
 ?>
 
+<script>
+  function alertDelete() {
+    var answer = confirm("Are you sure you are finished with this task?")
+    if (answer)
+      window.location = "process.php?delete&id=<?php echo $taskID ?>&token=<?php echo $_SESSION['userToken'] ?>"
+  }
+</script>
+
 <h2 class = "headline">Today is <?php echo date("l, F dS (m/d/Y)") ?></h2>
 
   <div class = "logsignWrap">
@@ -82,7 +90,8 @@
       <input type = "hidden" name = "taskID" value = "<?php echo htmlentities($taskID); ?>">
       <label class = "formLabel">More Info</label>
       <textarea class = "inputTextBig" name = "moreInput"  placeholder = "More Info"><?php echo htmlentities($taskMore); ?></textarea>
-      <input type = "submit" class = "inputBtn" name = "submitUpdate" value = "Update" required>
+      <input type = "submit" style = "margin-bottom: 15px" class = "inputBtn" name = "submitUpdate" value = "Update" required>
+      <a href = "javascript:alertDelete()" class = "inputBtn" style = "display: block; background-color: #1BAF5B">Finished</a>
     </form>
   </div>
 
