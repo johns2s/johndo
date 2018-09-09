@@ -12,12 +12,23 @@
 
     if (mysqli_num_rows($result) == 1) {
       while($row = mysqli_fetch_assoc($result)) {
-        if ($row["date"] == "unknown") {
-          $taskDate = $row["date"];
+        $taskDate = date("Y-m-d", $row["date"]);
+
+        if ($row["endDate"] == False) {
+          $endDateOrig = date("Y-m-d", $row["date"]);
+          $endDate = date('Y-m-d', strtotime($endDateOrig . ' + 7 days'));
         }
         else {
-          $taskDate = date("Y-m-d", $row["date"]); /* when date supported change to yyyy-mm-dd */
+          $endDate = date("Y-m-d", $row["endDate"]);
         }
+
+        if ($row["freq"] != False) {
+          $freq = $row["freq"];
+        }
+        else {
+          $freq = 7;
+        }
+
         $taskTitle = $row["title"];
         $taskMore = $row["more"];
       }
@@ -45,8 +56,29 @@
       ?>
       <label class = "formLabel">Task Name</label>
       <input type = "text" class = "inputText" name = "titleInput" maxlength = "75" placeholder = "Task Title" value = "<?php echo htmlentities($taskTitle); ?>" required>
-      <label class = "formLabel">Deadline</label>
-      <input type = "date" class = "inputText" name = "dateInput" minlength = "5" maxlength = "10" placeholder = "Deadline (MM/DD/YYYY)" value = "<?php echo htmlentities($taskDate); ?>" required>
+
+      <input id="once" style="display: none" name="recurring" value="once" type="radio" checked>
+      <input id="repeat" style="display: none" name="recurring" value="repeat" type="radio">
+
+      <label class = "formLabel">Recurring?</label>
+      <div class = "radioWrap">
+        <label for="once" id = "onceLabel" class="radioLabel">One Time</label>
+        <label for="repeat" id = "repeatLabel" class="radioLabel">Repeat</label>
+      </div>
+
+      <div id = "onceD" class = "sub">
+        <label class = "formLabel">Deadline</label>
+        <input value = "<?php echo htmlentities($taskDate); ?>" type = "date" class = "inputText" name = "dateInput" minlength = "5" maxlength = "10" placeholder = "Deadline (MM/DD/YYYY)" required>
+      </div>
+      <div id = "repeatD" class = "sub">
+        <label class = "formLabel">Frequency (days)</label>
+        <input value = "<?php echo htmlentities($freq); ?>" type = "number" class = "inputText" name = "freqInput" min = "1" max = "20" placeholder = "Repeat every x days" required>
+        <label class = "formLabel">Start date</label>
+        <input value = "<?php echo htmlentities($taskDate); ?>" type = "date" class = "inputText" name = "startInput" placeholder = "Start date (MM/DD/YYYY)" required>
+        <label class = "formLabel">End date</label>
+        <input value = "<?php echo htmlentities($endDate); ?>" type = "date" class = "inputText" name = "endInput" placeholder = "End date (MM/DD/YYYY)" required>
+      </div>
+
       <input type = "hidden" name = "taskID" value = "<?php echo htmlentities($taskID); ?>">
       <label class = "formLabel">More Info</label>
       <textarea class = "inputTextBig" name = "moreInput"  placeholder = "More Info"><?php echo htmlentities($taskMore); ?></textarea>
