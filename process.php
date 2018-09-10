@@ -9,7 +9,10 @@ if (isset($_SESSION["user"])) {
     }
     $recurring = mysqli_real_escape_string($conn, $_POST["recurring"]);
     if ($recurring == "repeat") {
-      $endDate = mysqli_real_escape_string($conn, $_POST["endInput"]);
+      $endDate = strtotime(mysqli_real_escape_string($conn, $_POST["endInput"]));
+      if ($endDate == false) {
+        $endDate = "unknown";
+      }
       $deadlineOrig = mysqli_real_escape_string($conn, $_POST["startInput"]);
       $freq = mysqli_real_escape_string($conn, $_POST["freqInput"]);
     }
@@ -45,7 +48,10 @@ if (isset($_SESSION["user"])) {
 
     $recurring = mysqli_real_escape_string($conn, $_POST["recurring"]);
     if ($recurring == "repeat") {
-      $endDate = mysqli_real_escape_string($conn, $_POST["endInput"]);
+      $endDate = strtotime(mysqli_real_escape_string($conn, $_POST["endInput"]));
+      if ($endDate == false) {
+        $endDate = "unknown";
+      }
       $deadlineOrig = mysqli_real_escape_string($conn, $_POST["startInput"]);
       $freq = mysqli_real_escape_string($conn, $_POST["freqInput"]);
     }
@@ -59,6 +65,7 @@ if (isset($_SESSION["user"])) {
     if ($deadline == false) {
       $deadline = "unknown";
     }
+
     $user = $_SESSION["userID"];
     $sql = "UPDATE tasks set title = '$title', more = '$more', date = '$deadline', endDate = '$endDate', freq = '$freq' WHERE id = '$taskID' AND user = '$user'";
     if (mysqli_query($conn, $sql)) {
