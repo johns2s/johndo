@@ -71,7 +71,8 @@ header {
   width: 100%;
 }
 /* item border, backround image/repeat header/body are exp */
-.item {  border: 1px solid #cfcfcf;
+.item {
+  border: 1px solid #cfcfcf;
 }
 
 .headerTitle {
