@@ -29,12 +29,14 @@ if (isset($_SESSION["user"])) {
         $endDate = "unknown";
       }
       $deadlineOrig = mysqli_real_escape_string($conn, $_POST["startInput"]);
+      $startDate = mysqli_real_escape_string($conn, $_POST["startInput"]);
       $freq = mysqli_real_escape_string($conn, $_POST["freqInput"]);
 
     }
     else {
       $deadlineOrig = mysqli_real_escape_string($conn, $_POST["dateInput"]);
       $endDate = False;
+      $startDate = False;
       $freq = False;
     }
 
@@ -45,7 +47,7 @@ if (isset($_SESSION["user"])) {
     $user = $_SESSION["userID"];
     $template = new_template();
 
-		$sql = "INSERT INTO tasks set template = '$template', title = '$title', more = '$more', date = '$deadline', endDate = '$endDate', freq = '$freq', user = '$user'";
+		$sql = "INSERT INTO tasks set template = '$template', title = '$title', more = '$more', startDate = '$startDate', date = '$deadline', endDate = '$endDate', freq = '$freq', user = '$user'";
 		if (mysqli_query($conn, $sql)) {
 		    header("location: index.php");
         // for ()
@@ -71,8 +73,13 @@ if (isset($_SESSION["user"])) {
       if ($endDate == False) {
         $endDate = "unknown";
       }
-      $deadlineOrig = mysqli_real_escape_string($conn, $_POST["startInput"]);
+      $deadlineOrig = False;
       $freq = mysqli_real_escape_string($conn, $_POST["freqInput"]);
+
+      $deadline = strtotime($deadlineOrig);
+      if ($deadline == false) {
+        $deadline = "unknown";
+      }
     }
     else {
       $deadlineOrig = mysqli_real_escape_string($conn, $_POST["dateInput"]);
@@ -80,15 +87,11 @@ if (isset($_SESSION["user"])) {
       $freq = False;
     }
 
-    $deadline = strtotime($deadlineOrig);
-    if ($deadline == false) {
-      $deadline = "unknown";
-    }
-
     $user = $_SESSION["userID"];
     $sql = "UPDATE tasks set title = '$title', more = '$more', date = '$deadline', endDate = '$endDate', freq = '$freq' WHERE template = '$taskID' AND user = '$user'";
     if (mysqli_query($conn, $sql)) {
         header("location: index.php");
+
         exit;
     }
     else {

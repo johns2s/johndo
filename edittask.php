@@ -29,6 +29,7 @@
           $freq = 7;
         }
 
+        $freqCheck = $row["freq"];
         $taskTitle = $row["title"];
         $taskMore = $row["more"];
       }
@@ -64,9 +65,8 @@
       ?>
       <label class = "formLabel">Task Name</label>
       <input type = "text" class = "inputText" name = "titleInput" maxlength = "75" placeholder = "Task Title" value = "<?php echo htmlentities($taskTitle); ?>" required>
-
-      <input id="once" style="display: none" name="recurring" value="once" type="radio" checked>
-      <input id="repeat" style="display: none" name="recurring" value="repeat" type="radio">
+      <input id="once" style="display: none" name="recurring" value="once" type="radio" <?php if ($freqCheck == False) { echo "checked"; } ?>>
+      <input id="repeat" style="display: none" name="recurring" value="repeat" type="radio"  <?php if ($freqCheck != False) { echo "checked"; } ?>>
 
       <label class = "formLabel">Recurring?</label>
       <div class = "radioWrap">
