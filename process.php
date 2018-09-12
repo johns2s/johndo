@@ -1,5 +1,20 @@
 <?php
 include("config.php");
+
+function new_template() {
+  $confirm_template = False;
+  $template = "";
+  while ($confirm_template == False) {
+    $template = random_int(10000000, 100000000);
+    $sqlCheckTemp = "SELECT * FROM tasks WHERE template = '$template'";
+    $resultCheckTemp = mysqli_query($conn, $sqlCheckTemp);
+    if (mysqli_num_rows($resultCheckTemp) == 0) {
+      $confirm_template = True;
+    }
+  }
+  return $template;
+}
+
 if (isset($_SESSION["user"])) {
   if (isset($_POST["submitNew"]) && isset($_POST["token"]) && $_POST["token"] == $_SESSION["userToken"]) {
     $title = mysqli_real_escape_string($conn, $_POST["titleInput"]);
@@ -15,6 +30,7 @@ if (isset($_SESSION["user"])) {
       }
       $deadlineOrig = mysqli_real_escape_string($conn, $_POST["startInput"]);
       $freq = mysqli_real_escape_string($conn, $_POST["freqInput"]);
+
     }
     else {
       $deadlineOrig = mysqli_real_escape_string($conn, $_POST["dateInput"]);
@@ -27,9 +43,12 @@ if (isset($_SESSION["user"])) {
       $deadline = "unknown";
     }
     $user = $_SESSION["userID"];
-		$sql = "INSERT INTO tasks set title = '$title', more = '$more', date = '$deadline', endDate = '$endDate', freq = '$freq', user = '$user'";
+    $template = new_template();
+
+		$sql = "INSERT INTO tasks set template = '$template', title = '$title', more = '$more', date = '$deadline', endDate = '$endDate', freq = '$freq', user = '$user'";
 		if (mysqli_query($conn, $sql)) {
 		    header("location: index.php");
+        // for ()
         exit;
 		}
     else {
@@ -49,7 +68,7 @@ if (isset($_SESSION["user"])) {
     $recurring = mysqli_real_escape_string($conn, $_POST["recurring"]);
     if ($recurring == "repeat") {
       $endDate = strtotime(mysqli_real_escape_string($conn, $_POST["endInput"]));
-      if ($endDate == false) {
+      if ($endDate == False) {
         $endDate = "unknown";
       }
       $deadlineOrig = mysqli_real_escape_string($conn, $_POST["startInput"]);
@@ -67,7 +86,7 @@ if (isset($_SESSION["user"])) {
     }
 
     $user = $_SESSION["userID"];
-    $sql = "UPDATE tasks set title = '$title', more = '$more', date = '$deadline', endDate = '$endDate', freq = '$freq' WHERE id = '$taskID' AND user = '$user'";
+    $sql = "UPDATE tasks set title = '$title', more = '$more', date = '$deadline', endDate = '$endDate', freq = '$freq' WHERE template = '$taskID' AND user = '$user'";
     if (mysqli_query($conn, $sql)) {
         header("location: index.php");
         exit;

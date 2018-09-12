@@ -2,15 +2,15 @@
 
   include("header.php");
 
-  if (isset($_SESSION["user"]) && isset($_GET["id"])) {
+  if (isset($_SESSION["user"]) && isset($_GET["template"])) {
 
-    $taskID = $_GET["id"];
+    $taskID = $_GET["template"];
     $userID = $_SESSION["userID"];
 
-    $sql = "SELECT * FROM tasks WHERE id = '$taskID' AND user = '$userID'";
+    $sql = "SELECT * FROM tasks WHERE template = '$taskID' AND user = '$userID'";
     $result = mysqli_query($conn, $sql);
 
-    if (mysqli_num_rows($result) == 1) {
+    if (mysqli_num_rows($result) > 0) {
       while($row = mysqli_fetch_assoc($result)) {
         $taskDate = date("Y-m-d", $row["date"]);
 

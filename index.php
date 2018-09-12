@@ -155,7 +155,7 @@ if (isset($_SESSION["user"])) {
 
               echo "<div class = 'optionsWrap'>
               <a href = 'process.php?delete&id=" . $row["id"] . "&token=" . $_SESSION["userToken"] . "' style = 'color: #1BAF5B; display: block;'>Finished</a>
-              <a href = 'edittask.php?id=" . $row["id"] . "' style = 'color: #5294e2; display: block;'>Edit</a>
+              <a href = 'edittask.php?template=" . $row["template"] . "' style = 'color: #5294e2; display: block;'>Edit</a>
               </div>
               </div>";
                 }
