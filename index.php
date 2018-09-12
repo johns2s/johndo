@@ -48,8 +48,8 @@ if (isset($_SESSION["user"])) {
 
   ?>
 
-  <div class = "wrapper">
-    <div class = "item">
+  <div class = "wrapper tskW">
+    <div class = "item tsk">
       <h3 style = "margin-bottom: 25px">Add New Task</h3>
       <hr>
       <form action = "newtask.php" method = "POST">
@@ -88,7 +88,7 @@ if (isset($_SESSION["user"])) {
             $dite = date("m/d/Y", $row["date"]);
           }
 
-          echo "<div class = 'item'><h3>" . htmlentities($row["title"]) . "</h3>";
+          echo "<div class = 'item tsk'><h3>" . htmlentities($row["title"]) . "</h3>";
 
           $more = nl2br(htmlentities($row["more"]));
 
