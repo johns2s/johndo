@@ -17,14 +17,14 @@
           $enDateOrig = date("Y-m-d", $row["date"]);
           $endDate = date('Y-m-d', strtotime($endDateOrig . ' + 7 days'));
           $taskDate = date("Y-m-d", $row["date"]);
-          $startDate = date('Y-m-d', strtotime($endDateOrig . ' + 1 day'));
+          $startDate = date('Y-m-d', strtotime($endDateOrig));
         }
         else {
           $endDateOrig = date("Y-m-d", $row["startDate"]);
           $endDate = date("Y-m-d", $row["endDate"]);
           $startDate = date("Y-m-d", $row["startDate"]);
           $freq = $row["freq"];
-          $taskDate = date('Y-m-d', strtotime($endDateOrig . ' + 1 day'));
+          $taskDate = date('Y-m-d', strtotime($endDateOrig));
 
         }
 

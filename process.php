@@ -132,7 +132,7 @@ if (isset($_SESSION["user"])) {
       $endDate = False;
       $freq = False;
       $startDate = False;
-      $sql = "UPDATE tasks set title = '$title', more = '$more', startDate = '$startDate', date = '$deadline', endDate = '$endDate', freq = '$freq' WHERE template = '$taskID' AND user = '$user'";
+      $sql = "UPDATE tasks set title = '$title', more = '$more', startDate = '$startDate', date = '$deadline', endDate = '$endDate', freq = '$freq' WHERE template = '$template' AND user = '$user'";
       if (mysqli_query($conn, $sql)) {
         header("location: index.php");
         exit;
