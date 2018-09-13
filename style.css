@@ -71,7 +71,8 @@ header {
   width: 100%;
 }
 /* item border, backround image/repeat header/body are exp */
-.item {  border: 1px solid #cfcfcf;
+.item {
+  border: 1px solid #cfcfcf;
 }
 
 .headerTitle {
@@ -127,6 +128,10 @@ nav {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 25px;
   padding: 25px;
+}
+
+.tskW {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .wrapper hr, .bigHR {
@@ -250,9 +255,10 @@ nav {
 
 .radioWrap {
   overflow: hidden;
+  display: block;
   border-radius: 2px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
   margin-bottom: 15px;
 }
 
@@ -282,6 +288,36 @@ nav {
   background-color: #cfcfcf;
 }
 
+.sub {
+  background-color: #f8f8f8;
+  border: 1px solid #cfcfcf;
+  margin-bottom: 15px;
+  border-radius: 2px;
+  padding: 15px 15px 8px;
+}
+
+/* start task new/edit page buttons */
+
+#once:checked ~ .radioWrap #onceLabel {
+  background-color: #cfcfcf;
+}
+
+#repeat:checked ~ .radioWrap #repeatLabel {
+  background-color: #cfcfcf;
+}
+
+#onceD, #repeatD {
+  display: none;
+}
+
+#once:checked ~ #onceD {
+  display: block;
+}
+
+#repeat:checked ~ #repeatD {
+  display: block;
+}
+
 main {
   padding: 25px;
 }
@@ -300,5 +336,10 @@ footer {
   }
   #navSmall {
     display: none;
+  }
+
+  .tsk {
+    min-width: 250px;
+    max-width: 400px;
   }
 }

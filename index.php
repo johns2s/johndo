@@ -48,8 +48,8 @@ if (isset($_SESSION["user"])) {
 
   ?>
 
-  <div class = "wrapper">
-    <div class = "item">
+  <div class = "wrapper tskW">
+    <div class = "item tsk">
       <h3 style = "margin-bottom: 25px">Add New Task</h3>
       <hr>
       <form action = "newtask.php" method = "POST">
@@ -88,7 +88,7 @@ if (isset($_SESSION["user"])) {
             $dite = date("m/d/Y", $row["date"]);
           }
 
-          echo "<div class = 'item'><h3>" . htmlentities($row["title"]) . "</h3>";
+          echo "<div class = 'item tsk'><h3>" . htmlentities($row["title"]) . "</h3>";
 
           $more = nl2br(htmlentities($row["more"]));
 
@@ -155,7 +155,7 @@ if (isset($_SESSION["user"])) {
 
               echo "<div class = 'optionsWrap'>
               <a href = 'process.php?delete&id=" . $row["id"] . "&token=" . $_SESSION["userToken"] . "' style = 'color: #1BAF5B; display: block;'>Finished</a>
-              <a href = 'edittask.php?id=" . $row["id"] . "' style = 'color: #5294e2; display: block;'>Edit</a>
+              <a href = 'edittask.php?template=" . $row["template"] . "' style = 'color: #5294e2; display: block;'>Edit</a>
               </div>
               </div>";
                 }

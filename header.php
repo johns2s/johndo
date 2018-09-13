@@ -15,6 +15,7 @@ include("config.php");
   <link rel="stylesheet" type="text/css" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
   <script src="https://cdn.jsdelivr.net/npm/moment@2/moment.min.js"></script>
+  <!-- JSDelivr down? Try this: <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script> -->
 </head>
 
 <body>

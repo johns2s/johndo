@@ -30,8 +30,29 @@
       ?>
       <label class = "formLabel">Task Name</label>
       <input type = "text" class = "inputText" name = "titleInput" maxlength = "75" placeholder = "Task Title" value = "<?php echo htmlentities($taskTitle); ?>" required>
-      <label class = "formLabel">Deadline</label>
-      <input type = "date" class = "inputText" name = "dateInput" minlength = "5" maxlength = "10" placeholder = "Deadline (MM/DD/YYYY)" required>
+
+      <input id="once" style="display: none" name="recurring" value="once" type="radio" checked>
+      <input id="repeat" style="display: none" name="recurring" value="repeat" type="radio">
+
+      <label class = "formLabel">Recurring?</label>
+      <div class = "radioWrap">
+        <label for="once" id = "onceLabel" class="radioLabel">One Time</label>
+        <label for="repeat" id = "repeatLabel" class="radioLabel">Repeat</label>
+      </div>
+
+      <div id = "onceD" class = "sub">
+        <label class = "formLabel">Deadline</label>
+        <input value = "<?php echo date("Y-m-d", strtotime("+1 day")) ?>" type = "date" class = "inputText" name = "dateInput" minlength = "5" maxlength = "10" placeholder = "Deadline (MM/DD/YYYY)" required>
+      </div>
+      <div id = "repeatD" class = "sub">
+        <label class = "formLabel">Frequency (days)</label>
+        <input value = "7" type = "number" class = "inputText" name = "freqInput" min = "1" max = "20" placeholder = "Repeat every x days" required>
+        <label class = "formLabel">Start date</label>
+        <input value = "<?php echo date("Y-m-d", strtotime("+1 day")) ?>" type = "date" class = "inputText" name = "startInput" placeholder = "Start date (MM/DD/YYYY)" required>
+        <label class = "formLabel">End date</label>
+        <input value = "<?php echo date("Y-m-d", strtotime("+8 days")) ?>" type = "date" class = "inputText" name = "endInput" placeholder = "End date (MM/DD/YYYY)" required>
+      </div>
+
       <label class = "formLabel">More Info</label>
       <textarea class = "inputTextBig" name = "moreInput"  placeholder = "More Info"></textarea>
       <input type = "submit" class = "inputBtn" name = "submitNew" value = "Add" required>
