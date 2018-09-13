@@ -132,13 +132,36 @@ if (isset($_SESSION["user"])) {
       $endDate = False;
       $freq = False;
       $startDate = False;
-      $sql = "UPDATE tasks set title = '$title', more = '$more', startDate = '$startDate', date = '$deadline', endDate = '$endDate', freq = '$freq' WHERE template = '$template' AND user = '$user'";
-      if (mysqli_query($conn, $sql)) {
-        header("location: index.php");
-        exit;
+      // validate if task used to be recurring
+      $sqlCheckRec = "SELECT * FROM tasks WHERE template = '$template' AND user = '$user' LIMIT 1";
+      $resultCheck = mysqli_query($conn, $sqlCheckRec);
+      if (mysqli_num_rows($resultCheck) > 0) {
+      while($rowC = mysqli_fetch_assoc($resultCheck)) {
+        if ($rowC["freq"] != False) {
+          $sqlExpunge = "DELETE FROM tasks WHERE template = '$template' AND user = '$user'";
+          $sql = "INSERT INTO tasks set template = '$template', title = '$title', more = '$more', startDate = '$startDate', date = '$deadline', endDate = '$endDate', freq = '$freq', user = '$user'";
+          if (mysqli_query($conn, $sqlExpunge) && mysqli_query($conn, $sql)) {
+            header("location: index.php");
+            exit;
+          }
+          else {
+            header("location: edittask.php?template=" . $taskID ."&message=A+database+error+occured+while+updating+your+task.You+may+not+be+allowed+to+edit+this+task.");
+            exit;
+          }
+        }
+        $sql = "UPDATE tasks set title = '$title', more = '$more', startDate = '$startDate', date = '$deadline', endDate = '$endDate', freq = '$freq' WHERE template = '$template' AND user = '$user'";
+        if (mysqli_query($conn, $sql)) {
+          header("location: index.php");
+          exit;
+        }
+        else {
+          header("location: edittask.php?template=" . $taskID ."&message=A+database+error+occured+while+updating+your+task.You+may+not+be+allowed+to+edit+this+task.");
+          exit;
+        }
+      }
       }
       else {
-        header("location: newtask.php?message=A+database+error+occured+while+updating+your+task.You+may+not+be+allowed+to+edit+this+task.");
+        header("location: edittask.php?template=" . $taskID ."&message=A+database+error+occured+while+updating+your+task.You+may+not+be+allowed+to+edit+this+task.");
         exit;
       }
     }
