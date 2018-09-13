@@ -149,11 +149,6 @@ nav {
   overflow-x: hidden;
 }
 
-.tsk {
-  min-width: 250px;
-  max-width: 400px;
-}
-
 .item h3 {
   margin-bottom: 15px;
 }
@@ -341,5 +336,10 @@ footer {
   }
   #navSmall {
     display: none;
+  }
+
+  .tsk {
+    min-width: 250px;
+    max-width: 400px;
   }
 }
