@@ -14,10 +14,10 @@
       while($row = mysqli_fetch_assoc($result)) {
 
         if ($row["endDate"] == False) {
-          $enDateOrig = date("Y-m-d", $row["date"]);
+          $endDateOrig = date("Y-m-d", $row["date"]);
           $endDate = date('Y-m-d', strtotime($endDateOrig . ' + 7 days'));
           $taskDate = date("Y-m-d", $row["date"]);
-          $startDate = date('Y-m-d', strtotime($endDateOrig));
+          $startDate = $taskDate;
         }
         else {
           $endDateOrig = date("Y-m-d", $row["startDate"]);
