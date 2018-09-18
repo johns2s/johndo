@@ -105,7 +105,7 @@ if (isset($_SESSION["user"])) {
             //Here you can see the desired result
             $shortUrl = implode ("/", array($third));
 
-            $more = preg_replace($testUrl, "<a href='" . $url[0] . "' rel = 'nofollow'>' . $shortUrl . '</a>', $moreOrig);
+            $more = preg_replace($testUrl, "<a href='" . $url[0] . "' rel = 'nofollow'>" . $shortUrl . "</a>", $moreOrig);
           }
           else {
             $more = $moreOrig;
