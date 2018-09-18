@@ -96,7 +96,7 @@ if (isset($_SESSION["user"])) {
           $testUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
           // Check if there is a url in the text
           if (preg_match($testUrl, $moreOrig, $url)) {
-            //Here you will have 4 elements
+            //split into parts if user has a /something to clean url
             $parts = explode ("/", $url[0]);
 
             //glue
