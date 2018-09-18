@@ -97,17 +97,18 @@ if (isset($_SESSION["user"])) {
           // Check if there is a url in the text
           if (preg_match($testUrl, $moreOrig, $url)) {
             //Here you will have 4 elements
-            $parts = explode ('/', $url[0]);
+            $parts = explode ("/", $url[0]);
 
-            //this will glue the first 3 elements
-            list ($first, $second, $third) = $parts;
+            //glue
+            list($first, $second, $third) = $parts;
 
             //Here you can see the desired result
-            $shortUrl = (implode ('/',array($third)));
-            $more = preg_replace($testUrl, '<a href="' . $url[0] . '" rel="nofollow">'. $shortUrl .'</a>', $moreOrig);
+            $shortUrl = implode ("/", array($third));
+
+            $more = preg_replace($testUrl, "<a href='" . $url[0] . "' rel = 'nofollow'>' . $shortUrl . '</a>', $moreOrig);
           }
           else {
-            $more = "foo";
+            $more = $moreOrig;
           }
 
             if ($fuzziness == "fuzzy") {
