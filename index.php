@@ -90,7 +90,26 @@ if (isset($_SESSION["user"])) {
 
           echo "<div class = 'item tsk'><h3>" . htmlentities($row["title"]) . "</h3>";
 
-          $more = nl2br(htmlentities($row["more"]));
+          $moreOrig = nl2br(htmlentities($row["more"]));
+
+          // The Regular Expression filter
+          $testUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+          // Check if there is a url in the text
+          if (preg_match($testUrl, $moreOrig, $url)) {
+            //split into parts if user has a /something to clean url
+            $parts = explode ("/", $url[0]);
+
+            //glue
+            list($first, $second, $third) = $parts;
+
+            //Here you can see the desired result
+            $shortUrl = implode ("/", array($third));
+
+            $more = preg_replace($testUrl, "<a href='" . $url[0] . "' rel = 'nofollow'>" . $shortUrl . "</a>", $moreOrig);
+          }
+          else {
+            $more = $moreOrig;
+          }
 
             if ($fuzziness == "fuzzy") {
 
