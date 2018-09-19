@@ -90,7 +90,7 @@ if (isset($_SESSION["user"])) {
 
           echo "<div class = 'item tsk'><h3>" . htmlentities($row["title"]) . "</h3>";
 
-          $moreOrig = nl2br(htmlentities($row["more"]));
+          $moreOrig = htmlentities($row["more"]);
 
           // The Regular Expression filter
           $testUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
@@ -105,10 +105,10 @@ if (isset($_SESSION["user"])) {
             //Here you can see the desired result
             $shortUrl = implode ("/", array($third));
 
-            $more = preg_replace($testUrl, "<a href='" . $url[0] . "' rel = 'nofollow'>" . $shortUrl . "</a>", $moreOrig);
+            $more = nl2br(preg_replace($testUrl, "<a href='" . $url[0] . "' rel = 'nofollow'>" . $shortUrl . "</a>", $moreOrig));
           }
           else {
-            $more = $moreOrig;
+            $more = nl2br($moreOrig);
           }
 
             if ($fuzziness == "fuzzy") {
