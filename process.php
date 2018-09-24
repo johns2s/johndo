@@ -47,6 +47,10 @@ if (isset($_SESSION["user"])) {
 		$sql = "INSERT INTO tasks set template = '$template', title = '$title', more = '$more', startDate = '$startDate', date = '$deadline', endDate = '$endDate', freq = '$freq', user = '$user'";
 		if (mysqli_query($conn, $sql)) {
       if ($recurring == "repeat") {
+        if ($freq < 1 || $freq > 20) {
+          header("location: newtask.php?message=Invalid+frequency.");
+          exit;
+        }
         $deadlineNew = strtotime('+' . $freq . ' days', $deadline);
         $duntil = floor(abs($endDate - $startDate) / 86400);
         if ($duntil > 500) {
@@ -89,6 +93,11 @@ if (isset($_SESSION["user"])) {
 
       $deadline = strtotime(mysqli_real_escape_string($conn, $_POST["startInput"]));
       $freq = mysqli_real_escape_string($conn, $_POST["freqInput"]);
+
+      if ($freq < 1 || $freq > 20) {
+        header("location: edittask.php?template=" . $taskID ."&message=Invalid+frequency.");
+        exit;
+      }
 
       if ($startDate > $endDate) {
         header("location: newtask.php?message=The+start+date+may+not+be+later+than+the+end+date.");
