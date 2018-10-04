@@ -2,6 +2,7 @@
 
 /* start init */
 
+/* not * {} due to some issues with inline (in-element) styling */
 body, div, h1, h2, h3, p, a, hr, button, ol, ul, li, img, header, main, form, input, textarea, pre {
   margin: 0;
   padding: 0;
