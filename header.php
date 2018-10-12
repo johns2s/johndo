@@ -10,7 +10,7 @@ include("config.php");
 <head>
   <title>johnDo - Planner</title>
   <meta charset = "UTF-8">
-  <link rel="icon" href="logo.png" type="image/png">
+  <link rel="icon" href="favi.png" type="image/png">
   <meta name="viewport" content="width = device-width, initial-scale = 1.0">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
