@@ -15,8 +15,12 @@ body, div, h1, h2, h3, p, a, hr, button, ol, ul, li, img, header, main, form, in
   box-sizing: border-box;
 }
 
+body {
+  font-size: .95em;
+}
+
 h1 {
-	font-size: 1.9em;
+	font-size: 2.0em;
 	font-weight: 700;
   line-height: 1.2;
 }
@@ -329,6 +333,9 @@ footer {
 }
 
 @media (min-width: 600px) {
+  body {
+    font-size: 1em;
+  }
   h1 {
     font-size: 2.1em;
   }
