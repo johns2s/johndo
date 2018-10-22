@@ -39,14 +39,14 @@
       ?>
       <form action = "process.php" method = "POST">
         <input type = "hidden" name = "token" value = "<?php echo $_SESSION["userToken"]; ?>">
-        <label class = "formLabel">Task Display</label>
+        <label class = "formLabel">Date Display</label>
         <div class = "radioWrap">
           <input id="fuzzy" style="display: none" name="fuzziness" value="fuzzy" <?php if($fuzziness == "fuzzy") { echo "checked"; } ?> type="radio">
           <input id="notFuzzy" style="display: none" name="fuzziness" value="notFuzzy" <?php if($fuzziness == "notFuzzy") { echo "checked"; } ?> type="radio">
           <input id="semiFuzzy" style="display: none" name="fuzziness" value="semiFuzzy" <?php if($fuzziness == "semiFuzzy") { echo "checked"; } ?> type="radio">
           <label for="fuzzy" id = "fuzzyLabel" class="radioLabel">Fuzzy</label>
-          <label for="semiFuzzy" id = "semifLabel" class="radioLabel">Semi-Fuzzy</label>
-          <label for="notFuzzy" id = "nfLabel" class="radioLabel">Not Fuzzy</label>
+          <label for="semiFuzzy" id = "semifLabel" class="radioLabel">Hybrid</label>
+          <label for="notFuzzy" id = "nfLabel" class="radioLabel">Exact</label>
         </div>
         <input type = "submit" class = "inputBtn" name = "submitUpdateSettings" value = "Update Settings" style = "margin-bottom: 10px;" required>
       </form>
