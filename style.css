@@ -332,6 +332,15 @@ footer {
   padding: 25px;
 }
 
+@media (min-width: 400px) {
+  #navBig {
+    display: block;
+  }
+  #navSmall {
+    display: none;
+  }
+}
+
 @media (min-width: 600px) {
   body {
     font-size: 1em;
@@ -341,12 +350,6 @@ footer {
   }
   #home {
     padding: 100px 50px;
-  }
-  #navBig {
-    display: block;
-  }
-  #navSmall {
-    display: none;
   }
 
   .tsk {
