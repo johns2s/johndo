@@ -92,7 +92,7 @@ if (isset($_SESSION["user"])) {
 
           $moreOrig = htmlentities($row["more"]);
 
-          // The Regular Expression filter
+          // The Regular Expression filter, thanks Stackoverflow
           $testUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
           // Check if there is a url in the text
           if (preg_match($testUrl, $moreOrig, $url)) {
@@ -102,7 +102,7 @@ if (isset($_SESSION["user"])) {
             //glue
             list($first, $second, $third) = $parts;
 
-            //Here you can see the desired result
+            //output
             $shortUrl = implode ("/", array($third));
 
             $more = nl2br(preg_replace($testUrl, "<a href='" . $url[0] . "' rel = 'nofollow'>" . $shortUrl . "</a>", $moreOrig));
