@@ -92,24 +92,24 @@ if (isset($_SESSION["user"])) {
 
           $moreOrig = htmlentities($row["more"]);
 
-          // The Regular Expression filter, thanks Stackoverflow
-          $testUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
-          // Check if there is a url in the text
-          if (preg_match($testUrl, $moreOrig, $url)) {
-            //split into parts if user has a /something to clean url
-            $parts = explode ("/", $url[0]);
-
-            //glue
-            list($first, $second, $third) = $parts;
-
-            //output
-            $shortUrl = implode ("/", array($third));
-
-            $more = nl2br(preg_replace($testUrl, "<a href='" . $url[0] . "' rel = 'nofollow'>" . $shortUrl . "</a>", $moreOrig));
-          }
-          else {
-            $more = nl2br($moreOrig);
-          }
+          // regex, thanks Stackoverflow
+          $moreUrl = preg_replace_callback(
+              "@
+                  (?:http|ftp|https)://
+                  (?:
+                      (?P<domain>\S+?) (?:/\S+)|
+                      (?P<domain_only>\S+)
+                  )
+              @sx",
+              function($a){
+                  $link = "<a href='" . $a[0] . "'>";
+                  $link .= $a["domain"] !== "" ? $a["domain"] : $a["domain_only"];
+                  $link .= "</a>";
+                  return $link;
+              },
+              $moreOrig
+          );
+          $more = nl2br($moreUrl);
 
             if ($fuzziness == "fuzzy") {
 
