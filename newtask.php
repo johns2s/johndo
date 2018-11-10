@@ -14,7 +14,7 @@
 
 ?>
 
-<h2 class = "headline">Today is <?php echo date("l, F dS (m/d/Y)") ?></h2>
+<h2 class = "headline">Today is <?php echo date("l, F dS") ?></h2>
 
   <div class = "logsignWrap">
     <form class = "item" action = "process.php" method = "POST">
