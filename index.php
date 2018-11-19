@@ -6,6 +6,10 @@ if (isset($_SESSION["user"])) {
 
 ?>
 
+  <script src="https://cdn.jsdelivr.net/npm/moment@2/moment.min.js"></script>
+  <!-- JSDelivr down? Try this: <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script> -->
+
+
   <h2 class = "headline">Today is <?php echo date("l, F dS") ?></h2>
 
   <script>
