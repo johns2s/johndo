@@ -118,12 +118,12 @@ if (isset($_SESSION["user"])) {
             if ($fuzziness == "fuzzy") {
 
                 if (strtotime("tomorrow") >= $row["date"] && strtotime("today") <= $row["date"] && $row["date"] !== "unknown") {
-                  echo "<img class = 'icon' src = 'redclock.png' title = 'This task is due soon'></img>
+                  echo "<img class = 'icon' src = 'redclock.png' alt = 'This task is due soon' title = 'This task is due soon'></img>
                   <p style = 'color: #f62626'><b><script>doMomentFuzzy('" . $dite . "');</script></b></p>
                   <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
                 }
                 else if (strtotime("today") >= $row["date"] && $row["date"] !== "unknown") {
-                  echo "<img class = 'icon' src = 'warning.png' title = 'This task is late'></img>
+                  echo "<img class = 'icon' src = 'warning.png' alt = 'This task is late' title = 'This task is late'></img>
                   <p style = 'color: #f62626'><b><script>doMomentFuzzy('" . $dite . "');</script></b></p>
                   <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
 
@@ -138,12 +138,12 @@ if (isset($_SESSION["user"])) {
               else if ($fuzziness == "semiFuzzy") {
 
                   if (strtotime("tomorrow") >= $row["date"] && strtotime("today") <= $row["date"] && $row["date"] !== "unknown") {
-                    echo "<img class = 'icon' src = 'redclock.png' title = 'This task is due soon'></img>
+                    echo "<img class = 'icon'alt = 'This task is due soon'  src = 'redclock.png' title = 'This task is due soon'></img>
                     <p style = 'color: #f62626'><b><script>doMomentSemiFuzzy('" . $dite . "');</script></b></p>
                     <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
                   }
                   else if (strtotime("today") >= $row["date"] && $row["date"] !== "unknown") {
-                    echo "<img class = 'icon' src = 'warning.png' title = 'This task is late'></img>
+                    echo "<img class = 'icon' alt = 'This task is late' src = 'warning.png' title = 'This task is late'></img>
                     <p style = 'color: #f62626'><b><script>doMomentSemiFuzzy('" . $dite . "');</script></b></p>
                     <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
 
@@ -159,12 +159,12 @@ if (isset($_SESSION["user"])) {
               else {
 
                   if (strtotime("tomorrow") >= $row["date"] && strtotime("today") <= $row["date"] && $row["date"] !== "unknown") {
-                    echo "<img class = 'icon' src = 'redclock.png' title = 'This task is due soon'></img>
+                    echo "<img class = 'icon' alt = 'This task is due soon' src = 'redclock.png' title = 'This task is due soon'></img>
                     <p style = 'color: #f62626'><b>" . $date . "</b></p>
                     <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
                   }
                   else if (strtotime("today") >= $row["date"] && $row["date"] !== "unknown") {
-                    echo "<img class = 'icon' src = 'warning.png' title = 'This task is late'></img>
+                    echo "<img class = 'icon' alt = 'This task is late' src = 'warning.png' title = 'This task is late'></img>
                     <p style = 'color: #f62626'><b>" . $date . "</b></p>
                     <hr><p style = 'max-height: 300px; display: block; overflow-y: auto'>" . $more . "</p>";
 
@@ -209,21 +209,21 @@ if (isset($_SESSION["user"])) {
 
     <div class = "wrapper">
       <div class = "item">
-        <img class = "buyImg" src = "phone.png">
+        <img class = "buyImg" src = "phone.png" alt = "">
         <h3 style = "margin-bottom: 25px">Works on all Devices</h3>
         <hr>
         <p>johnDo's beautiful and responsive design is hand-crafted to be completely responsive and work on phones, tablets, and computers.</p>
       </div>
 
       <div class = "item">
-        <img class = "buyImg" src = "fast.png">
+        <img class = "buyImg" src = "fast.png" alt = "">
         <h3 style = "margin-bottom: 25px">Really Fast</h3>
         <hr>
         <p>johnDo is powered by the latest, cleanest HTML5 and CSS3. In addition, we use the fastest server technology and no bloat on our pages.</p>
       </div>
 
       <div class = "item">
-        <img class = "buyImg" src = "secure.png">
+        <img class = "buyImg" src = "secure.png" alt = "">
         <h3 style = "margin-bottom: 25px">Secure</h3>
         <hr>
         <p>We only use the most secure password encryption techniques. In addition, all pages are served over SSL, which makes it nearly impossible for hackers to intercept your data enroute to our servers.</p>
