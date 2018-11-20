@@ -5,7 +5,7 @@ include("config.php");
 
 <!doctype html>
 
-<html>
+<html lang = "en">
 
 <head>
   <title>johnDo - Planner</title>
