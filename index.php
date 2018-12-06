@@ -114,6 +114,9 @@ if (isset($_SESSION["user"])) {
               $moreOrig
           );
           $more = nl2br($moreUrl);
+          if ($more == "") {
+            $more = ". . . . .";
+          }
 
             if ($fuzziness == "fuzzy") {
 

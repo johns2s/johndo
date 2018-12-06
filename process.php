@@ -19,9 +19,6 @@ if (isset($_SESSION["user"])) {
   if (isset($_POST["submitNew"]) && isset($_POST["token"]) && $_POST["token"] == $_SESSION["userToken"]) {
     $title = mysqli_real_escape_string($conn, $_POST["titleInput"]);
     $more = mysqli_real_escape_string($conn, $_POST["moreInput"]);
-    if ($more == "") {
-      $more = ". . . . .";
-    }
     $recurring = mysqli_real_escape_string($conn, $_POST["recurring"]);
     if ($recurring == "repeat") {
       $endDate = strtotime(mysqli_real_escape_string($conn, $_POST["endInput"]));
@@ -80,10 +77,6 @@ if (isset($_SESSION["user"])) {
     $title = mysqli_real_escape_string($conn, $_POST["titleInput"]);
     $template = mysqli_real_escape_string($conn, $_POST["taskID"]);
     $more = mysqli_real_escape_string($conn, $_POST["moreInput"]);
-    if ($more == "") {
-      $more = ". . . . .";
-    }
-
     $user = $_SESSION["userID"];
 
     $recurring = mysqli_real_escape_string($conn, $_POST["recurring"]);
