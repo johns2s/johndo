@@ -207,6 +207,10 @@ nav {
   height: 200px;
 }
 
+.inputText:focus, .inputTextBig:focus {
+  border-color: #5294e2;
+}
+
 .inputBtn {
   background-color: #5294e2;
   padding: 10px;
