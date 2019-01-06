@@ -23,7 +23,7 @@
   <div class = "logsignWrap">
     <script>
       function alertKill() {
-        var answer = confirm("Are you sure you wish to permanently delete your account and all of your tasks?")
+        var answer = confirm("Are you sure you wish to permanently delete your account, all of your tasks, and any other associated data?")
         if (answer)
           window.location = "logsign.php?killAccount=True&token=<?php echo $_SESSION['userToken'] ?>"
       }
