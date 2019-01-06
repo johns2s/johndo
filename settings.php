@@ -59,7 +59,7 @@
         <input type = "password" class = "inputText" name = "passwordChangeInput" value = "" placeholder = "New Password" required>
         <input type = "submit" class = "inputBtn" name = "submitUpdateSettingsPW" value = "Change Password" style = "margin-bottom: 15px" required>
       </form>
-      <a href = "javascript:alertKill()" class = "inputBtn" style = "display: block; background-color: #f62626">Delete Account</a>
+      <a href = "javascript:alertKill()" class = "inputBtn" style = "display: block; background-color: #f62626">Delete Account & Data</a>
 
     </div>
   </div>
