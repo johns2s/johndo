@@ -22,7 +22,7 @@
     </script>
     <div class = "item">
       <h3>Your Data</h3>
-      <p class = "message"><i>You can copy and past the data on this page, take a screenshot, or print it out</i></p>
+      <p class = "message"><i>You can copy and paste the data from this page, take a screenshot, or print it out. We do collect other data, like display preferences, but it is not personal.</i></p>
       <label class = "formLabel">Your Email</label>
       <div class = "sub">
         <p class = "data"><?php echo $rowDat["email"]; ?></p>
