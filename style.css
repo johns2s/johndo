@@ -302,7 +302,7 @@ nav {
   border: 1px solid #cfcfcf;
   margin-bottom: 15px;
   border-radius: 2px;
-  padding: 15px 15px 8px;
+  padding: 15px 15px 6px;
 }
 
 /* start task new/edit page buttons */
@@ -329,6 +329,12 @@ nav {
 
 main {
   padding: 25px;
+}
+
+.sub .data {
+  text-align: left;
+  display: block;
+  margin-bottom: 9px; /* this plus .sub's 6px = 15px */
 }
 
 footer {

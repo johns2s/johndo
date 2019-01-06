@@ -57,8 +57,10 @@
         <input type = "email" style = "display:none" value = "<?php echo htmlentities(); ?>">
         <input type = "password" style = "display:none">
         <input type = "password" class = "inputText" name = "passwordChangeInput" value = "" placeholder = "New Password" required>
-        <input type = "submit" class = "inputBtn" name = "submitUpdateSettingsPW" value = "Change Password" style = "margin-bottom: 15px" required>
+        <input type = "submit" class = "inputBtn" name = "submitUpdateSettingsPW" value = "Change Password" required>
       </form>
+      <hr class = "bigHR">
+      <a href = "data.php" class = "inputBtn" style = "display: block; margin-bottom: 15px;">View Your Data</a>
       <a href = "javascript:alertKill()" class = "inputBtn" style = "display: block; background-color: #f62626">Delete Account & Data</a>
 
     </div>
